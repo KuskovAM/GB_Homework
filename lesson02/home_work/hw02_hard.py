@@ -54,3 +54,29 @@ date = '-2.10.3001'
 #
 # Вход: 11
 # Выход: 5 3
+n = int(input("Введите номер комнаты: "))
+i = 1
+x = 1
+x_c = 1
+y_c = 1
+while True:
+    if y_c == x and x_c == x:
+        x += 1
+        y_c = 1
+    while y_c <= x:
+        x_c = 1
+        while x_c <= x:
+            i += 1
+            if i == n:
+                print(x_c, y_c)
+            x_c += 1
+
+        y_c += 1
+
+
+
+
+
+
+
+
