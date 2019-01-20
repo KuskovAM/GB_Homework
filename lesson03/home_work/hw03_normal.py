@@ -59,7 +59,7 @@ def filt(func,a):
             break
     return b
 a = [1, -3, 5, 9]
-print(filt(func,a))
+print("Отфильтрованная последовательность: ", filt(func,a))
 
 
 # Задача-4:
