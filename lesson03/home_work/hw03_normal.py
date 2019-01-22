@@ -2,24 +2,24 @@
 # Напишите функцию, возвращающую ряд Фибоначчи с n-элемента до m-элемента.
 # Первыми элементами ряда считать цифры 1 1
 
-# def fibonacci(n, m):
-#     nFirst = 1
-#     nSecond = 1
-#     i = 2
-#     while i <= m:
-#         if i >= n:
-#             fibList.append(nFib)
-#         nFib = nFirst + nSecond
-#         nFirst = nSecond
-#         nSecond = nFib
-#         i += 1
-#     return fibList
-#
-# fibList = []
-# n = int(input("Введите с какого порядкового номера хотите получить последовательность Фибоначчи: "))
-# m = int(input("И до какого порядкового номера: "))
-# fibList = fibonacci(n,m)
-# print(fibList)
+def fibonacci(n, m):
+    nFirst = 1
+    nSecond = 1
+    i = 2
+    while i <= m:
+        if i >= n:
+            fibList.append(nFib)
+        nFib = nFirst + nSecond
+        nFirst = nSecond
+        nSecond = nFib
+        i += 1
+    return fibList
+
+fibList = []
+n = int(input("Введите с какого порядкового номера хотите получить последовательность Фибоначчи: "))
+m = int(input("И до какого порядкового номера: "))
+fibList = fibonacci(n,m)
+print(fibList)
 #    pass
 
 # Задача-2:
@@ -28,24 +28,25 @@
 # Для решения данной задачи нельзя использовать встроенную функцию и метод sort()
 
 
-# def sort_to_max(origin_list):
-#     i = 0
-#     while i < len(origin_list) - 1:
-#         a = origin_list[i]
-#         b = origin_list[i+1]
-#         if a > b:
-#             origin_list[i] = b
-#             origin_list[i+1] = a
-#             i = -1
-#         i += 1
-#     return origin_list
-#
-# oList = sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0])
-# print(oList)
+def sort_to_max(origin_list):
+    i = 0
+    while i < len(origin_list) - 1:
+        a = origin_list[i]
+        b = origin_list[i+1]
+        if a > b:
+            origin_list[i] = b
+            origin_list[i+1] = a
+            i = -1
+        i += 1
+    return origin_list
+
+oList = sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0])
+print(oList)
 
 # Задача-3:
 # Напишите собственную реализацию стандартной функции filter.
 # Разумеется, внутри нельзя использовать саму функцию filter.
+
 def func(a):
     if int(a) >= 0:
         return 1
@@ -65,4 +66,44 @@ print("Отфильтрованная последовательность: ", f
 # Задача-4:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
 # Определить, будут ли они вершинами параллелограмма.
+
+import math
+a1 = input("Введите x1 и y1 через запятую для первой точки: ")
+a2 = input("Введите x2 и y2 через запятую для второй точки: ")
+a3 = input("Введите x1 и y1 через запятую для третьей точки: ")
+a4 = input("Введите x1 и y1 через запятую для четвертой точки: ")
+
+a1 = a1.split(",")
+a2 = a2.split(",")
+a3 = a3.split(",")
+a4 = a4.split(",")
+listA = [a1,a2,a3,a4]
+
+def length(a,b):
+    l = math.sqrt((float(a[0])-float(b[0]))**2 + (float(a[1])-float(b[1]))**2)  #Выдает комплексное число, хотя, очевидно,это не так.
+    return l
+
+def checkParallel(listA):
+    a1 = listA[0]
+    a2 = listA[1]
+    a3 = listA[2]
+    a4 = listA[3]
+    if abs(float(a1[1])-float(a2[1]))/abs(float(a1[0])-float(a2[0])) == abs(float(a3[1])-float(a4[1]))/abs(float(a3[0])-float(a4[0])) or \
+            abs(float(a1[1]) - float(a4[1])) / abs(float(a1[0]) - float(a4[0])) == abs(float(a2[1]) - float(a3[1])) / abs(float(a2[0]) - float(a3[0])):
+        return True
+    else: return False
+def checkLength(listA):
+    l1 = length(a1,a2)
+    l2 = length(a2,a3)
+    l3 = length(a1,a4)
+    l4 = length(a2,a3)
+    lList = [l1,l2,l3,l4]
+    lSet = set(lList)
+    if len(lList) != len(lSet):
+        return True
+    else: return False
+if checkParallel(listA) == True and checkLength(listA) == True:
+    print("Параллелограмм")
+else:
+    print("Не параллелограмм")
 
